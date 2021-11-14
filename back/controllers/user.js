@@ -17,7 +17,7 @@ const login = async (req, res) => {
   try {
     const user = await User.findOne({ email, password });
     if (user) {
-      const token = jwt.sign({ email }, process.env.llave, {
+      const token = jwt.sign({ email }, process.env.JWT_SECRET, {
         expiresIn: 1440,
       });
       res.send({ user, token });
