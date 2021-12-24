@@ -1,10 +1,18 @@
 <template>
-  <!-- <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div> -->
+  <Header v-if="$route.name !== 'Login' && $route.name !== 'Register'"></Header>
   <router-view />
 </template>
+
+<script>
+import Header from "@/components/Header.vue";
+
+export default {
+  name: "App",
+  components: {
+    Header,
+  },
+};
+</script>
 
 <style>
 body {
