@@ -1,5 +1,5 @@
 <template>
-  <div class="book">
+  <div class="book" v-if="book.show">
     <div class="wrapperDescriptions">
       <div class="book-image">
         <img

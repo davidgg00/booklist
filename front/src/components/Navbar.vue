@@ -1,13 +1,9 @@
 <template>
   <ul>
     <router-link to="/">Home</router-link>
-    <router-link to="/">BookList</router-link>
+    <router-link to="/booklist">BookList</router-link>
     <router-link to="/about">Community</router-link>
     <a href="#" @click="logout">Logout</a>
-    <!--     <li>Home</li>
-    <li>BookList</li>
-    <li>Community</li>
-    <li>Logout</li> -->
   </ul>
 </template>
 
