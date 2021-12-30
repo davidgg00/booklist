@@ -19,8 +19,9 @@ const addUserBook = async (req, res) => {
 };
 
 const getUserBooks = async (req, res) => {
-  const { userEmail } = req.params;
-  const user = await User.findOne({ email: userEmail });
+  const { id } = req.params;
+  const user = await User.findOne({ _id: id });
+
   if (!user) {
     return res.status(400).json({ msg: "User not found" });
   }

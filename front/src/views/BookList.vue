@@ -15,6 +15,7 @@ export default {
 
 <style scoped>
 .bookListPage {
+  padding-bottom: 10px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;

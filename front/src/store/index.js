@@ -16,6 +16,7 @@ export default createStore({
       state.user.name = data.user.name;
       state.user.email = data.user.email;
       state.user.idToken = data.idToken;
+      state.user._id = data.user._id;
 
       localStorage.setItem("idToken", data.idToken);
       state.status = "authenticated";

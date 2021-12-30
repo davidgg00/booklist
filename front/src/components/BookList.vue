@@ -29,6 +29,9 @@
   </form>
 
   <div class="booksList" v-if="selectedStatus === 'read'">
+    <div class="error" v-if="booksRead_isnull">
+      <p>No books to show</p>
+    </div>
     <Book
       v-for="book in booksRead"
       :book="book"
@@ -39,7 +42,10 @@
       "
     ></Book>
   </div>
-  <div class="booksList" v-else-if="selectedStatus === 'reading'" v-cloak>
+  <div class="booksList" v-else-if="selectedStatus === 'reading'">
+    <div class="error" v-if="booksReading_isnull">
+      <p>No books to show</p>
+    </div>
     <Book
       v-for="book in booksReading"
       :book="book"
@@ -51,6 +57,9 @@
     ></Book>
   </div>
   <div class="booksList" v-else-if="selectedStatus === 'want to read'">
+    <div class="error" v-if="booksWantToRead_isnull">
+      <p>No books to show</p>
+    </div>
     <Book
       v-for="book in booksWantToRead"
       :book="book"
@@ -82,6 +91,7 @@ import { useStore } from "vuex";
 import googleBooksApi from "../../api/googleBooksApiConnection";
 import Book from "@/components/Book.vue";
 import ModalBook from "@/components/ModalBook.vue";
+import { useRoute } from "vue-router";
 export default {
   components: {
     Book,
@@ -89,10 +99,14 @@ export default {
   },
   setup() {
     const store = useStore();
+    const route = useRoute();
     const booksWantToRead = ref([]);
     const booksReading = ref([]);
     const booksRead = ref([]);
     const searchValue = ref("");
+    const booksWantToRead_isnull = ref(false);
+    const booksRead_isnull = ref(false);
+    const booksReading_isnull = ref(false);
 
     const selectedStatus = ref("want to read");
     const showModal = ref(false);
@@ -139,14 +153,14 @@ export default {
     }
 
     async function getUserBooks() {
-      const { data } = await backendApi.get(
-        "userBooks/get/" + store.getters.getUser.email,
-        {
-          headers: {
-            "x-token": localStorage.getItem("idToken"),
-          },
-        }
-      );
+      let userId = route.params.id
+        ? route.params.id
+        : store.getters.getUser._id;
+      const { data } = await backendApi.get("userBooks/get/" + userId, {
+        headers: {
+          "x-token": localStorage.getItem("idToken"),
+        },
+      });
       booksRead.value = [];
       booksReading.value = [];
       booksWantToRead.value = [];
@@ -157,6 +171,13 @@ export default {
             .then((response) => {
               response.data.status = book.status;
               response.data.show = true;
+              response.data.volumeInfo.description
+                ? (response.data.volumeInfo.description =
+                    response.data.volumeInfo.description.replace(
+                      /(<([^>]+)>)/gi,
+                      ""
+                    ))
+                : "";
               booksRead.value.push(response.data);
             });
         } else if (book.status === "reading") {
@@ -165,6 +186,13 @@ export default {
             .then((response) => {
               response.data.status = book.status;
               response.data.show = true;
+              response.data.volumeInfo.description
+                ? (response.data.volumeInfo.description =
+                    response.data.volumeInfo.description.replace(
+                      /(<([^>]+)>)/gi,
+                      ""
+                    ))
+                : "";
               booksReading.value.push(response.data);
             });
         } else if (book.status === "want to read") {
@@ -173,12 +201,23 @@ export default {
             .then((response) => {
               response.data.status = book.status;
               response.data.show = true;
+              response.data.volumeInfo.description
+                ? (response.data.volumeInfo.description =
+                    response.data.volumeInfo.description.replace(
+                      /(<([^>]+)>)/gi,
+                      ""
+                    ))
+                : "";
               booksWantToRead.value.push(response.data);
             });
         }
         console.log("terminó");
       }
-      console.log(data.userBooks);
+      booksRead.value.length === 0 ? (booksRead_isnull.value = true) : "";
+      booksReading.value.length === 0 ? (booksReading_isnull.value = true) : "";
+      booksWantToRead.value.length === 0
+        ? (booksWantToRead_isnull.value = true)
+        : "";
     }
     onBeforeMount(getUserBooks);
     return {
@@ -191,6 +230,9 @@ export default {
       bookSelected,
       searchValue,
       searchBook,
+      booksWantToRead_isnull,
+      booksReading_isnull,
+      booksRead_isnull,
     };
   },
 };
@@ -250,5 +292,9 @@ input {
   justify-items: center;
   grid-row-gap: 70px;
   width: 100%;
+}
+
+.error {
+  margin-top: -50px;
 }
 </style>

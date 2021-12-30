@@ -2,7 +2,7 @@
   <ul>
     <router-link to="/">Home</router-link>
     <router-link to="/booklist">BookList</router-link>
-    <router-link to="/about">Community</router-link>
+    <router-link to="/community">Community</router-link>
     <a href="#" @click="logout">Logout</a>
   </ul>
 </template>

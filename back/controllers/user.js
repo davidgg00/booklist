@@ -58,4 +58,23 @@ const checkAuthToken = async (req, res) => {
   }
 };
 
-module.exports = { register, login, checkAuthToken };
+const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find({});
+    res.send(users);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+};
+
+const getDataUser = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const user = await User.findById(id);
+    res.send(user);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+};
+
+module.exports = { register, login, checkAuthToken, getAllUsers, getDataUser };

@@ -9,7 +9,7 @@ const {
 const router = Router();
 
 router.post("/add", [jwtValidation], addUserBook);
-router.get("/get/:userEmail", [jwtValidation], getUserBooks);
+router.get("/get/:id", [jwtValidation], getUserBooks);
 router.post("/update", [jwtValidation], updateUserBook);
 
 module.exports = router;

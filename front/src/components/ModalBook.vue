@@ -135,7 +135,7 @@ export default {
       },
       async getUserBooks(book = this.book) {
         const { data } = await backendApi.get(
-          "userBooks/get/" + store.getters.getUser.email,
+          "userBooks/get/" + store.getters.getUser._id,
           {
             headers: {
               "x-token": localStorage.getItem("idToken"),

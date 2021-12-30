@@ -10,14 +10,24 @@ const routes = [
     component: Home,
   },
   {
-    path: "/about",
+    path: "/community",
     beforeEnter: [isAuthenticated],
-    name: "About",
+    name: "Community",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue"),
+      import(/* webpackChunkName: "about" */ "../views/Community.vue"),
+  },
+  {
+    path: "/user/:id",
+    beforeEnter: [isAuthenticated],
+    name: "User",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/User.vue"),
   },
   {
     path: "/booklist",
