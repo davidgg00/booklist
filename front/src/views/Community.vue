@@ -83,4 +83,22 @@ input {
   grid-row-gap: 70px;
   width: 100%;
 }
+
+@media (max-width: 1250px) {
+  .usersList {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 850px) {
+  .usersList {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media (max-width: 450px) {
+  .communityPage {
+    width: 100%;
+  }
+}
 </style>

@@ -27,5 +27,6 @@ header {
   justify-content: space-between;
   align-items: center;
   margin: 0 20px;
+  flex-wrap: wrap;
 }
 </style>

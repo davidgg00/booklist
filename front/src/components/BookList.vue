@@ -297,4 +297,32 @@ input {
 .error {
   margin-top: -50px;
 }
+
+@media only screen and (max-width: 1100px) {
+  .booksList {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .booksList {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  #status {
+    margin: 0 auto;
+    width: 100%;
+  }
+  form {
+    margin: 0 auto;
+  }
+  form input {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  form {
+    width: 80%;
+  }
+}
 </style>

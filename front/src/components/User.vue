@@ -127,4 +127,15 @@ li {
   padding: 10px;
   border-radius: 25px;
 }
+
+@media (max-width: 450px) {
+  .user {
+    width: 80% !important;
+    min-width: 0px;
+  }
+
+  .user-info-name {
+    word-wrap: break-word;
+  }
+}
 </style>

@@ -303,4 +303,36 @@ select {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
 }
+
+@media (max-width: 1000px) {
+  .modal-container {
+    width: 80%;
+  }
+
+  #close {
+    margin-top: -785px !important;
+  }
+
+  .modal-container {
+    height: 90%;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .card-info {
+    width: 100%;
+    height: 35%;
+    display: block;
+  }
+
+  .card-info img {
+    float: left;
+    margin-left: 10px;
+  }
+
+  .card-description {
+    width: 90%;
+    height: 60%;
+  }
+}
 </style>

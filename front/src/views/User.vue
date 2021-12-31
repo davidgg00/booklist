@@ -51,6 +51,7 @@ export default {
 .user {
   display: flex;
   justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 .user-info {
   background: #f5cfef;
@@ -62,6 +63,7 @@ export default {
   height: 100%;
   border: 1px solid black;
   border-radius: 10px;
+  word-wrap: break-word;
 }
 
 .user-books-list {
@@ -80,5 +82,31 @@ img {
   margin-top: 5px;
   width: 150px;
   height: 150px;
+}
+
+@media (max-width: 1250px) {
+  .user-books-list {
+    width: 80%;
+  }
+
+  .user-info {
+    width: 40%;
+  }
+
+  .user-info p {
+    font-size: 0.8em;
+  }
+}
+
+@media (max-width: 600px) {
+  .user-info {
+    width: 60%;
+  }
+}
+
+@media (max-width: 400px) {
+  .user-info {
+    width: 70%;
+  }
 }
 </style>
