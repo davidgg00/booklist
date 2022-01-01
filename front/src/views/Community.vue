@@ -7,6 +7,7 @@
         placeholder="Search a friend by name"
         @input="requestResult"
         v-model="searchValue"
+        @submit.prevent=""
       />
     </form>
     <div class="usersList">

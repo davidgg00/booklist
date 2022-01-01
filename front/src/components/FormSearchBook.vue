@@ -8,6 +8,7 @@
         @input="searchBooks"
         v-model="searchValue"
         placeholder="Type autor, book name....."
+        @submit.prevent=""
       />
       <button type="submit" class="search-button">
         <img src="../assets/search.png" alt="" />
@@ -27,7 +28,6 @@ export default {
     const searchValue = ref("");
     const searchBooks = async () => {
       try {
-        console.log(searchValue.value);
         if (searchValue.value.trim()) {
           await googleBooksApi
             .get("/volumes", {
@@ -43,7 +43,6 @@ export default {
           emit("booksResult", null);
         }
       } catch (error) {
-        console.log("fatal error");
         console.log(error);
       }
     };

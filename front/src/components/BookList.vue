@@ -25,6 +25,7 @@
       placeholder="Search for a book"
       @input="searchBook"
       v-model="searchValue"
+      @submit.prevent=""
     />
   </form>
 
@@ -211,7 +212,6 @@ export default {
               booksWantToRead.value.push(response.data);
             });
         }
-        console.log("terminó");
       }
       booksRead.value.length === 0 ? (booksRead_isnull.value = true) : "";
       booksReading.value.length === 0 ? (booksReading_isnull.value = true) : "";

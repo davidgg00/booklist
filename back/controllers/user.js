@@ -29,7 +29,7 @@ const login = async (req, res) => {
     const user = await User.findOne({ email, password });
     if (user) {
       const idToken = jwt.sign({ email }, process.env.JWT_SECRET, {
-        expiresIn: "365d",
+        expiresIn: "1h",
       });
       res.send({ user, idToken });
     } else {

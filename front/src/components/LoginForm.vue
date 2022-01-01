@@ -32,7 +32,6 @@ export default {
         if (!ok) {
           Swal.fire("Error", message, "error");
         } else {
-          console.log("logueado");
           router.push({ name: "Home" });
         }
       },

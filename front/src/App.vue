@@ -1,6 +1,14 @@
 <template>
   <Header v-if="$route.name !== 'Login' && $route.name !== 'Register'"></Header>
-  <router-view />
+  <!-- <transition name="fade" mode="out-in">
+    <router-view />
+  </transition> -->
+
+  <router-view v-slot="{ Component }">
+    <transition name="route" mode="out-in">
+      <component :is="Component" />
+    </transition>
+  </router-view>
 </template>
 
 <script>
@@ -37,5 +45,16 @@ body {
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+
+.route-enter-from,
+.route-leave-to {
+  opacity: 0;
+  transform: translateX(-100px);
+}
+
+.route-enter-active,
+.route-leave-active {
+  transition: all 300ms ease-in-out;
 }
 </style>
