@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
 
 const register = async (req, res) => {
   const { email, password, name } = req.body;
@@ -8,13 +9,30 @@ const register = async (req, res) => {
       message: "Please provide email, password and name",
     });
   }
+
+  if (password.length < 6) {
+    return res.status(400).json({
+      message: "Password should be at least 6 characters long",
+    });
+  }
+
+  if (!email.includes("@")) {
+    return res.status(400).json({
+      message: "Please provide a valid email",
+    });
+  }
+
   const userExists = await User.findOne({ email });
   if (userExists) {
     return res.status(400).json({
       message: "Email already exists",
     });
   }
-  const user = new User({ email, password, name });
+
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(password, salt);
+
+  const user = new User({ email, password: hashedPassword, name });
   try {
     await user.save();
     res.status(201).send(user);
@@ -26,11 +44,24 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   const { email, password } = req.body;
   try {
-    const user = await User.findOne({ email, password });
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(400).json({
+        message: "User does not exist",
+      });
+    }
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(400).json({
+        message: "Incorrect password",
+      });
+    }
+
     if (user) {
       const idToken = jwt.sign({ email }, process.env.JWT_SECRET, {
         expiresIn: "1h",
       });
+      delete user.password;
       res.send({ user, idToken });
     } else {
       res.status(401).send("Invalid Credentials");
