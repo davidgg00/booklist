@@ -154,6 +154,9 @@ export default {
     }
 
     async function getUserBooks() {
+      booksReading_isnull.value = false;
+      booksRead_isnull.value = false;
+      booksWantToRead_isnull.value = false;
       let userId = route.params.id
         ? route.params.id
         : store.getters.getUser._id;

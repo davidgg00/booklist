@@ -36,9 +36,13 @@
       </div>
     </div>
     <div class="book-categories">
-      <ul v-for="category in book.volumeInfo.categories" :key="category">
-        <li>
-          {{ category }}
+      <ul>
+        <li
+          v-for="category in book.volumeInfo.categories.slice(0, 1)"
+          :key="category"
+        >
+          <p v-if="category.length > 25">{{ category.substring(0, 25) }}</p>
+          <p v-else>{{ category }}</p>
         </li>
       </ul>
     </div>
@@ -65,7 +69,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .book {
   display: flex;
   flex-wrap: wrap;
@@ -149,5 +153,19 @@ li {
   background: #c6bbeb;
   padding: 10px;
   border-radius: 25px;
+}
+
+li p {
+  padding: 0;
+  margin: 0;
+}
+
+.book-categories {
+  display: flex;
+  flex-direction: column;
+}
+
+.book-categories li {
+  word-break: break-all;
 }
 </style>

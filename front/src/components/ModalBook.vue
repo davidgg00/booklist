@@ -117,6 +117,8 @@ export default {
                 text: "Book status has been changed",
                 icon: "success",
                 confirmButtonText: "Ok",
+              }).then(() => {
+                emit("close");
               });
               emit("refreshBookList");
               this.getUserBooks(props.book);

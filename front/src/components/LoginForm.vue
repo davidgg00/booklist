@@ -1,13 +1,13 @@
 <template>
   <div id="wrapperLogin">
-    <div id="login">
+    <form id="login" @submit.prevent="login">
       <label for="email">Email</label>
       <input type="email" id="email" v-model="email" />
       <label for="password">Password</label>
       <input type="password" id="password" v-model="password" />
-      <button @click="login">Login</button>
+      <button>Login</button>
       <router-link to="/register">Register</router-link>
-    </div>
+    </form>
   </div>
 </template>
 
@@ -47,10 +47,11 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  border: thin solid #ededed;
 }
 #login {
-  width: 200px;
-  height: 200px;
+  min-width: 200px;
+  min-height: 200px;
   padding: 50px;
   display: flex;
   flex-direction: column;
@@ -64,17 +65,51 @@ label {
   margin-bottom: 0.5em;
 }
 input {
+  display: inline-block;
   width: 100%;
   height: 2em;
   font-size: 1em;
   margin-bottom: 1em;
+  margin: 5px auto;
+  padding: 15px;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
 }
+
+input:focus {
+  outline: none;
+  border: thin solid #015b7e;
+}
+
 button {
   width: 100%;
-  height: 2em;
+  height: 50px;
+  background: #015b7e;
+  border: none;
+  outline: none;
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-weight: 700;
   font-size: 1em;
-  border-radius: 5px;
-  background: #e8feff;
-  margin-bottom: 10px;
+  transition: all 0.2s ease;
+  color: #fff;
+}
+
+button:hover {
+  background: #014965;
+}
+
+#login a {
+  color: #015b7e;
+  text-decoration: none;
+}
+
+#login a:hover {
+  text-decoration: underline;
+  color: black;
 }
 </style>
