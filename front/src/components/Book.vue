@@ -36,7 +36,7 @@
       </div>
     </div>
     <div class="book-categories">
-      <ul>
+      <ul v-if="book.volumeInfo.categories">
         <li
           v-for="category in book.volumeInfo.categories.slice(0, 1)"
           :key="category"
