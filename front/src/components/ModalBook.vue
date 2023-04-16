@@ -188,13 +188,14 @@ export default {
   width: 50%;
   margin: 0px auto;
   padding: 20px 30px;
-  background-color: #fff;
   border-radius: 2px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   transition: all 0.3s ease;
   font-family: Helvetica, Arial, sans-serif;
   border-radius: 50px;
-  background: #ccc;
+  background-color: #fff;
+  border: 2px solid rgba(255,255,255,0.1);
+  box-shadow: 0 0 40px rgba(8,7,16,0.6);
+  backdrop-filter: blur(10px);
   display: flex;
   justify-content: space-around;
 }
@@ -264,13 +265,15 @@ select {
 }
 
 .wrapper-buttons a {
-  color: white;
-  background-color: #6aabe7;
-  border: 1px solid black;
-  padding: 10px;
-  border-radius: 10px;
+  text-decoration: none;
+  color: black;
   margin: 10px;
   cursor: pointer;
+  border-bottom: 1px hidden black;
+}
+
+.wrapper-buttons a:hover {
+  border-bottom: 1px solid black;
 }
 
 .modal-header h3 {

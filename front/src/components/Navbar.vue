@@ -28,12 +28,10 @@ export default {
 a {
   list-style: none;
   display: inline-block;
-  padding: 10px;
-  border: 1px solid #ccc;
-  margin: 10px;
+  padding: 5px;
+  margin: 30px;
   cursor: pointer;
   color: white;
-  background-color: #6aabe7;
   text-decoration: none;
 }
 
@@ -42,6 +40,10 @@ ul {
   padding: 0;
   list-style: none;
   overflow: hidden;
+}
+
+ul > a:hover {
+  border-bottom: 1px solid white;
 }
 
 li a {
@@ -54,6 +56,7 @@ li a {
 li a:hover,
 .menu-btn:hover {
   background-color: #f4f4f4;
+  border-bottom: 1px solid white;
 }
 
 ul {
@@ -104,7 +107,7 @@ ul {
 }
 
 .menu-btn:checked ~ ul {
-  max-height: 240px;
+  max-height: 440px;
 }
 
 .menu-btn:checked ~ .menu-icon .navicon {
@@ -146,7 +149,7 @@ ul {
     width: 100%;
     display: flex;
     flex-direction: column;
-    background-color: #fff;
+    background-color:gray;
     position: absolute;
     top: 75px;
     right: 0px;

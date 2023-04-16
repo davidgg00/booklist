@@ -1,6 +1,6 @@
 <template>
   <header>
-    <h2>LoveBooks</h2>
+    <h2>BookList</h2>
     <Navbar />
   </header>
 </template>

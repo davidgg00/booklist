@@ -1,6 +1,8 @@
 <template>
   <div id="wrapperLogin">
+
     <form id="login" @submit.prevent="login">
+      <h3>BooksList</h3>
       <label for="email">Email</label>
       <input type="email" id="email" v-model="email" />
       <label for="password">Password</label>
@@ -8,6 +10,7 @@
       <button>Login</button>
       <router-link to="/register">Register</router-link>
     </form>
+    
   </div>
 </template>
 
@@ -47,33 +50,53 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: thin solid #ededed;
 }
-#login {
-  min-width: 200px;
-  min-height: 200px;
-  padding: 50px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  background: white;
-  border-radius: 10px;
+form{
+    height: 520px;
+    width: 400px;
+    background-color: rgba(255,255,255,0.13);
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 40px rgba(8,7,16,0.6);
+    padding: 50px 35px;
 }
-label {
-  font-size: 1.2em;
-  margin-bottom: 0.5em;
+form *{
+    font-family: 'Poppins',sans-serif;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
 }
-input {
-  display: inline-block;
-  width: 100%;
-  height: 2em;
-  font-size: 1em;
-  margin-bottom: 1em;
-  margin: 5px auto;
-  padding: 15px;
-  box-sizing: border-box;
-  transition: all 0.2s ease;
+form h3{
+    font-size: 32px;
+    line-height: 42px;
+    text-align: center;
+    color: #6aabe7;
+}
+label{
+    display: block;
+    margin-top: 30px;
+    font-size: 16px;
+    font-weight: 500;
+}
+input{
+    display: block;
+    height: 50px;
+    width: 100%;
+    background-color: rgba(255,255,255,0.07);
+    border-radius: 3px;
+    padding: 0 10px;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 300;
+}
+::placeholder{
+    color: #e5e5e5;
 }
 
 input:focus {
@@ -81,22 +104,17 @@ input:focus {
   border: thin solid #015b7e;
 }
 
-button {
-  width: 100%;
-  height: 50px;
-  background: #015b7e;
-  border: none;
-  outline: none;
-  display: block;
-  text-align: center;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  border-radius: 3px;
-  cursor: pointer;
-  font-weight: 700;
-  font-size: 1em;
-  transition: all 0.2s ease;
-  color: #fff;
+button{
+    margin-top: 50px;
+    width: 100%;
+    background-color: #ffffff;
+    color: #080710;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 30px;
 }
 
 button:hover {
@@ -111,5 +129,11 @@ button:hover {
 #login a:hover {
   text-decoration: underline;
   color: black;
+}
+
+@media (max-width: 500px) {
+  #login {
+    width: 80%;
+  }
 }
 </style>

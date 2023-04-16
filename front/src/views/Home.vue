@@ -1,6 +1,7 @@
 <template>
-  <div class="home">
-    <FormSearchBook @booksResult="requestResult" />
+  <div class="homeWrapper">
+    <div class="home">
+      <FormSearchBook @booksResult="requestResult" />
 
     <div class="booksList">
       <Book
@@ -25,6 +26,7 @@
         @addBookUser="addBookUser"
       />
     </transition>
+    </div>
   </div>
 </template>
 
@@ -113,8 +115,13 @@ export default {
 
 <style scoped>
 .home {
-  margin-top: 100px;
   justify-content: space-between;
+  background-color: rgba(255,255,255,0.13);
+  border: 2px solid rgba(255,255,255,0.1);
+  box-shadow: 0 0 40px rgba(8,7,16,0.6);
+  backdrop-filter: blur(10px);
+  width: 95%;
+  margin: 100px auto;
 }
 
 .booksList {

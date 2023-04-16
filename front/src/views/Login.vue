@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <h2>LoveBooks</h2>
     <LoginForm />
   </div>
 </template>

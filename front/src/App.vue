@@ -24,7 +24,10 @@ export default {
 
 <style>
 body {
-  background-color: #eff2f1;
+  background-image: url('./assets/bgLogin2.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -56,5 +59,11 @@ body {
 .route-enter-active,
 .route-leave-active {
   transition: all 300ms ease-in-out;
+}
+
+@media (max-width: 1200px) {
+  body {
+    background-repeat: repeat;
+  }
 }
 </style>
